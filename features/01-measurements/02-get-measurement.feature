@@ -25,3 +25,20 @@ Feature: Get a measurement
     # GET /measurements/2015-09-01T16:50:00.000Z
     When I get a measurement for "2015-09-01T16:50:00.000Z"
     Then the response has a status code of 404
+
+    @new
+    Scenario: submit a duplicated measurement with the same timestamp but different values
+    # POST /measurements
+    When I submit a new measurement as follows:
+          | timestamp                  | temperature | dewPoint | precipitation |
+          | "2015-09-01T16:00:00.000Z" | 27.1        | 16.7     | 10             |
+    Then the response has a status code of 201
+    And the Location header has the path "/measurements/2015-09-01T16:00:00.000Z"
+
+    @new
+    Scenario: Get a specific measurement
+    # GET /measurements/2015-09-01T16:50:00.000Z
+    Then the response has a status code of 200
+    And the response body is:
+      | timestamp                  | temperature | dewPoint | precipitation |
+      | "2015-09-01T16:20:00.000Z" | 27.1        | 16.7     | 0             |

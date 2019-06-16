@@ -59,7 +59,7 @@
         </executions>
       </plugin>
 
-      <plugin>
+      <!--<plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>exec-maven-plugin</artifactId>
         <version>1.6.0</version>
@@ -74,9 +74,9 @@
               <executable>npm</executable>
               <arguments>
                 <argument>install</argument>
-                <argument>--no-save</argument>
+                <argument>&#45;&#45;no-save</argument>
                 <argument>./assets/c1-code-test-take-home-tester-${takeHomeTester.version}.tgz</argument>
-                <argument>--prefix</argument>
+                <argument>&#45;&#45;prefix</argument>
                 <argument>.</argument>
               </arguments>
             </configuration>
@@ -92,25 +92,25 @@
               <skip>${skipTests}</skip>
               <executable>node</executable>
               <arguments>
-                <argument>--no-warnings</argument>
+                <argument>&#45;&#45;no-warnings</argument>
                 <argument>${npm.binDirectory}/take-home-integration-test</argument>
                 <argument>features</argument>
-                <argument>--check-new</argument>
-                <argument>--no-color</argument>
-                <argument>--command</argument>
+                <argument>&#45;&#45;check-new</argument>
+                <argument>&#45;&#45;no-color</argument>
+                <argument>&#45;&#45;command</argument>
                 <argument>java -jar ${project.build.directory}/${project.build.finalName}.jar</argument>
-                <argument>--port</argument>
+                <argument>&#45;&#45;port</argument>
                 <argument>${takeHomeTester.port}</argument>
-                <argument>--out-file</argument>
+                <argument>&#45;&#45;out-file</argument>
                 <argument>${takeHomeTester.logFile}</argument>
-                <argument>--</argument>
-                <argument>--tags</argument>
+                <argument>&#45;&#45;</argument>
+                <argument>&#45;&#45;tags</argument>
                 <argument>not @skip</argument>
               </arguments>
             </configuration>
           </execution>
         </executions>
-      </plugin>
+      </plugin>-->
     </plugins>
   </build>
 </project>

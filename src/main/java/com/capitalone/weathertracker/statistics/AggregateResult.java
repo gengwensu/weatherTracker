@@ -1,16 +1,15 @@
 package com.capitalone.weathertracker.statistics;
 
-import com.capitalone.weathertracker.statistics.Statistic;
 import com.fasterxml.jackson.annotation.JsonGetter;
 
 public class AggregateResult {
   private String metric;
-  private Statistic statistic;
+  private Statistics statistics;
   private double value;
 
-  public AggregateResult(String metric, Statistic statistic, double value) {
+  public AggregateResult(String metric, Statistics statistics, double value) {
     this.metric = metric;
-    this.statistic = statistic;
+    this.statistics = statistics;
     this.value = value;
   }
 
@@ -20,8 +19,8 @@ public class AggregateResult {
   }
 
   @JsonGetter("stat")
-  public Statistic getStatistic() {
-    return this.statistic;
+  public Statistics getStatistics() {
+    return this.statistics;
   }
 
   @JsonGetter("value")

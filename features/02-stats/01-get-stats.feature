@@ -80,3 +80,28 @@ Feature: Get measurement statistics
       | "dewPoint"    | "min"     | 16.9  |
       | "dewPoint"    | "max"     | 17.3  |
       | "dewPoint"    | "average" | 17.1  |
+
+    @new
+    Scenario: Get stats for repeated stat
+    # GET /stats?<params...>
+    When I get stats with parameters:
+      | param        | value                    |
+      | stat         | min                      |
+      | stat         | max                      |
+      | stat         | average                  |
+      | stat         | max                      |
+      | metric       | temperature              |
+      | metric       | dewPoint                 |
+      | metric       | precipitation            |
+      | metric       | temperature              |
+      | fromDateTime | 2015-09-01T16:00:00.000Z |
+      | toDateTime   | 2015-09-01T17:00:00.000Z |
+    Then the response has a status code of 200
+    And the response body is an array of:
+      | metric        | stat      | value |
+      | "temperature" | "min"     | 27.1  |
+      | "temperature" | "max"     | 27.5  |
+      | "temperature" | "average" | 27.3  |
+      | "dewPoint"    | "min"     | 16.9  |
+      | "dewPoint"    | "max"     | 17.3  |
+      | "dewPoint"    | "average" | 17.1  |
